@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的生活經歷</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft JhengHei', '微軟正黑體', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--card-color1), var(--card-color2));
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+        }
+
+        .card-title {
+            font-size: 1.7rem;
+            font-weight: 900;
+            color: #222;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-content {
+            line-height: 2;
+            color: #333;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .card-content div {
+            margin-bottom: 12px;
+            padding: 12px 15px;
+            background: rgba(0,0,0,0.03);
+            border-radius: 8px;
+            border-left: 3px solid var(--card-color1);
+            font-weight: bold;
+        }
+
+        /* 不同卡片的顏色主題 */
+        .card:nth-child(1) { --card-color1: #FF6B6B; --card-color2: #FF8E8E; }
+        .card:nth-child(2) { --card-color1: #4ECDC4; --card-color2: #44A08D; }
+        .card:nth-child(3) { --card-color1: #45B7D1; --card-color2: #96C93F; }
+        .card:nth-child(4) { --card-color1: #FFA07A; --card-color2: #FFE4B5; }
+        .card:nth-child(5) { --card-color1: #9B59B6; --card-color2: #E74C3C; }
+        .card:nth-child(6) { --card-color1: #3498DB; --card-color2: #2ECC71; }
+        .card:nth-child(7) { --card-color1: #E67E22; --card-color2: #F39C12; }
+        .card:nth-child(8) { --card-color1: #1ABC9C; --card-color2: #16A085; }
+        .card:nth-child(9) { --card-color1: #8E44AD; --card-color2: #9B59B6; }
+        .card:nth-child(10) { --card-color1: #E74C3C; --card-color2: #C0392B; }
+        .card:nth-child(11) { --card-color1: #F1C40F; --card-color2: #F39C12; }
+        .card:nth-child(12) { --card-color1: #2ECC71; --card-color2: #27AE60; }
+        .card:nth-child(13) { --card-color1: #E91E63; --card-color2: #AD1457; }
+        .card:nth-child(14) { --card-color1: #FF5722; --card-color2: #D84315; }
+        .card:nth-child(15) { --card-color1: #009688; --card-color2: #00695C; }
+        .card:nth-child(16) { --card-color1: #795548; --card-color2: #5D4037; }
+        .card:nth-child(17) { --card-color1: #607D8B; --card-color2: #455A64; }
+        .card:nth-child(18) { --card-color1: #FF9800; --card-color2: #F57C00; }
+        .card:nth-child(19) { --card-color1: #4CAF50; --card-color2: #388E3C; }
+        .card:nth-child(20) { --card-color1: #2196F3; --card-color2: #1565C0; }
+
+        @media (max-width: 768px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+                margin-bottom: 25px;
+            }
+            
+            .card {
+                padding: 25px;
+            }
+            
+            .card-title {
+                font-size: 1.5rem;
+                margin-bottom: 18px;
+            }
+            
+            .card-content {
+                font-size: 1.05rem;
+            }
+            
+            .card-content div {
+                padding: 15px;
+                margin-bottom: 15px;
+                font-size: 1.05rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+                margin-bottom: 20px;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .card-title {
+                font-size: 1.4rem;
+                margin-bottom: 15px;
+            }
+            
+            .card-content {
+                font-size: 1rem;
+            }
+            
+            .card-content div {
+                padding: 12px;
+                margin-bottom: 12px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 三真一假 🎯</h1>
+        
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">興趣嗜好</div>
+                <div class="card-content">
+                    <div>我會彈吉他</div>
+                    <div>我會游泳</div>
+                    <div>我會烘焙蛋糕</div>
+                    <div>我會開飛機 ✈️</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">旅遊經驗</div>
+                <div class="card-content">
+                    <div>我去過日本五次</div>
+                    <div>我在峇里島潛水過</div>
+                    <div>我曾經一個人去旅行</div>
+                    <div>我去過北極看企鵝 🐧</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">美食偏好</div>
+                <div class="card-content">
+                    <div>我不敢吃香菜</div>
+                    <div>我超愛珍珠奶茶</div>
+                    <div>我會自己煮泡菜鍋</div>
+                    <div>我每天早餐都吃牛排 🥩</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">運動挑戰</div>
+                <div class="card-content">
+                    <div>我爬過玉山</div>
+                    <div>我參加過夜跑活動</div>
+                    <div>我學過跆拳道</div>
+                    <div>我曾經在喜馬拉雅山騎腳踏車 🚵</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">童年玩具</div>
+                <div class="card-content">
+                    <div>我小時候有四驅車比賽冠軍獎盃</div>
+                    <div>我小時候收集過上百張遊戲王卡</div>
+                    <div>我小時候自己拼過樂高城堡</div>
+                    <div>我小時候真的擁有一架小飛機 ✈️</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">工作經歷</div>
+                <div class="card-content">
+                    <div>我曾經當過服務生</div>
+                    <div>我做過銷售業務</div>
+                    <div>我主持過活動</div>
+                    <div>我當過太空人 👨‍🚀</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">廚藝專長</div>
+                <div class="card-content">
+                    <div>我會煮義大利麵</div>
+                    <div>我會烤餅乾</div>
+                    <div>我會做壽司捲</div>
+                    <div>我會做滿漢全席 🍱</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">特殊交通工具</div>
+                <div class="card-content">
+                    <div>我搭過熱氣球 🎈</div>
+                    <div>我泛舟過</div>
+                    <div>我搭過郵輪</div>
+                    <div>我搭過火箭 🚀</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">特殊技能</div>
+                <div class="card-content">
+                    <div>我會畫漫畫</div>
+                    <div>我會變魔術</div>
+                    <div>我會折氣球</div>
+                    <div>我會隱身術 🫥</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">寵物經驗</div>
+                <div class="card-content">
+                    <div>我養過鸚鵡</div>
+                    <div>我養過刺蝟</div>
+                    <div>我養過兔子</div>
+                    <div>我養過恐龍 🦖</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">生活習慣</div>
+                <div class="card-content">
+                    <div>我每天堅持晨跑10公里 🏃‍♂️</div>
+                    <div>我每天做瑜伽一小時 🧘</div>
+                    <div>我每天背單字100個</div>
+                    <div>我每天睡在吊床上 🌴</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">學習經驗</div>
+                <div class="card-content">
+                    <div>我學過日文</div>
+                    <div>我學過吉他</div>
+                    <div>我學過插花</div>
+                    <div>我學過駕駛戰車 🛡️</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">美食冒險</div>
+                <div class="card-content">
+                    <div>我吃過臭豆腐</div>
+                    <div>我吃過鱔魚意麵</div>
+                    <div>我吃過炸蝗蟲</div>
+                    <div>我吃過仙人掌 🌵</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">學校經驗</div>
+                <div class="card-content">
+                    <div>我曾經拿過全國數學競賽獎</div>
+                    <div>我曾經代表學校參加國際科展</div>
+                    <div>我曾經獲得學校體育競賽冠軍</div>
+                    <div>我曾經拿過諾貝爾獎 🏆</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">科技使用</div>
+                <div class="card-content">
+                    <div>我會用AI做設計</div>
+                    <div>我會修電腦</div>
+                    <div>我會架網站</div>
+                    <div>我自己發明過手機 📱</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">驚險經歷</div>
+                <div class="card-content">
+                    <div>我曾經在山裡迷路過</div>
+                    <div>我曾經被海浪捲走差點溺水</div>
+                    <div>我曾經半夜被困在電梯裡</div>
+                    <div>我曾經被外星人綁架 👽</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">家庭背景</div>
+                <div class="card-content">
+                    <div>我有一個哥哥</div>
+                    <div>我有一個妹妹</div>
+                    <div>我有一個雙胞胎</div>
+                    <div>我爸是超級英雄 🦸</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">自然體驗</div>
+                <div class="card-content">
+                    <div>我看過極光</div>
+                    <div>我在沙漠騎過駱駝</div>
+                    <div>我在海裡看過海龜</div>
+                    <div>我在後院養過鯨魚 🐳</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">興趣</div>
+                <div class="card-content">
+                    <div>我喜歡看漫畫</div>
+                    <div>我喜歡旅行拍照</div>
+                    <div>我喜歡打桌遊</div>
+                    <div>我喜歡開坦克車 🛡️</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">童年回憶</div>
+                <div class="card-content">
+                    <div>我小時候掉進水溝</div>
+                    <div>我小時候玩過家家酒</div>
+                    <div>我小時候寫過日記</div>
+                    <div>我小時候養過大象 🐘</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
